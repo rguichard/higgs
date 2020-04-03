@@ -6,23 +6,24 @@ python:
 cache: pip
 
 env:
-  - BINDIR="$TRAVIS_BUILD_DIR/bin"
-  - HELM_VERSION="v3.1.2"
-  - KUBECTL_VERSION="v1.18.0"
-  - FLUXCD_REPO="https://charts.fluxcd.io"
-  - PATH="$PATH:$BINDIR"
-  - KUBECONFIG="$TRAVIS_BUILD_DIR/ansible/symplegma/kubeconfig/higgs/admin.conf"
+  global:
+    - BINDIR="$TRAVIS_BUILD_DIR/bin"
+    - HELM_VERSION="v3.1.2"
+    - KUBECTL_VERSION="v1.18.0"
+    - FLUXCD_REPO="https://charts.fluxcd.io"
+    - PATH="$PATH:$BINDIR"
+    - KUBECONFIG="$TRAVIS_BUILD_DIR/ansible/symplegma/kubeconfig/higgs/admin.conf"
 
 install:
   - mkdir $BINDIR
   - pip install -U ansible ansible-lint
-  - wget -qO- "https://storage.googleapis.com/kubernetes-helm/helm-${HELM_VERSION}-linux-amd64.tar.gz" | \
-    tar xvz --strip-components=1 -C $BINDIR \
-    && chmod +x $BINDIR/helm \
+  - wget -qO- "https://storage.googleapis.com/kubernetes-helm/helm-${HELM_VERSION}-linux-amd64.tar.gz" |
+    tar xvz --strip-components=1 -C $BINDIR
+    && chmod +x $BINDIR/helm
     && helm version --client
   - helm repo add fluxcd $FLUXCD_REPO
-  - curl -L https://storage.googleapis.com/kubernetes-release/release/${KUBECTL_VERSION}/bin/linux/amd64/kubectl -o $BINDIR/kubectl \
-    && chmod +x $BINDIR/kubectl \
+  - curl -L https://storage.googleapis.com/kubernetes-release/release/${KUBECTL_VERSION}/bin/linux/amd64/kubectl -o $BINDIR/kubectl
+    && chmod +x $BINDIR/kubectl
     && kubectl version --client
 
 script:
