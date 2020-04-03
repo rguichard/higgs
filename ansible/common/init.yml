@@ -5,3 +5,9 @@
     - system
   tags:
     - common
+
+- hosts: all
+  roles:
+    - lvm
+  tags:
+    - lvm

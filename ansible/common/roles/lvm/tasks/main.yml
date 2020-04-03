@@ -1,0 +1,28 @@
+- name: Create VG
+  lvg:
+    pvs: "{{ item.value.pv_list }}"
+    vg: "{{ item.key }}"
+    state: present
+  with_dict: "{{ vg_conf }}"
+
+- name: Create LV
+  lvol:
+    vg: "{{ vg_conf.seed.vg_name }}"
+    lv: "{{ item.value.lv }}"
+    size: "{{ item.value.size }}"
+  with_dict: "{{ lv_conf }}"
+
+- name: Format LV
+  filesystem:
+    dev: "/dev/{{ item.value.vg }}/{{ item.value.lv }}"
+    fstype: "{{ item.value.fstype }}"
+  with_dict: "{{ lv_conf }}"
+
+- name: Mount LV
+  mount:
+    src: "/dev/{{ item.value.vg }}/{{ item.value.lv }}"
+    path: "{{ item.value.path }}"
+    fstype: "{{ item.value.fstype }}"
+    state: mounted
+  with_dict: "{{ lv_conf }}"
+

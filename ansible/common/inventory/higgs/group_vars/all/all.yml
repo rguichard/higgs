@@ -19,3 +19,17 @@ users:
     groups:
       - box
     authorized_key: ""
+
+vg_conf:
+  seed:
+    pv_list: "/dev/sda4,/dev/sdb1"
+    vg_name: "seed"
+
+lv_conf:
+  seed:
+    vg: "seed"
+    lv: "seed"
+    size: +100%FREE
+    path: "/srv"
+    fstype: "ext4"
+
