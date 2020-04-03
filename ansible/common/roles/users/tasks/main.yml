@@ -17,7 +17,7 @@
     name: "{{ item.key }}"
     groups: "{{ item.value.groups }}"
     append: yes
-    state: present 
+    state: present
     createhome: yes
   with_dict: "{{ users }}"
 
