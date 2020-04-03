@@ -1,0 +1,9 @@
+git:
+  pollInterval: 1m
+  url: ssh://git@github.com/particuleio/higgs.git
+  branch: master
+  path: flux/resources
+syncGarbageCollection:
+  enable: true
+registry:
+  disableScanning: true
