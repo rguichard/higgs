@@ -34,8 +34,13 @@ script:
 - ansible-lint ansible/common/roles/*
 - pushd ansible/common && ansible-playbook -b -i inventory/higgs/hosts init.yml &&
   popd
-- pushd ansible/symplegma && ansible-galaxy install -r requirements-master.yml &&
+- pushd ansible/symplegma && ansible-galaxy install -r requirements.yml &&
   ansible-playbook -b -i inventory/higgs/hosts symplegma-init.yml && popd
+- kubectl get nodes
+- kubectl create ns flux --dry-run=client -o yaml | kubectl apply -f -
+- kubectl apply -f https://raw.githubusercontent.com/fluxcd/helm-operator/master/deploy/crds.yaml
+- helm upgrade -i flux fluxcd/flux --namespace flux -f flux/values-flux.yaml
+- helm upgrade -i helm-operator fluxcd/helm-operator --namespace flux -f flux/values-helm-operator.yaml
 notifications:
   slack:
     rooms:
