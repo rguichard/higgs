@@ -17,7 +17,7 @@ env:
 install:
   - mkdir $BINDIR
   - pip install -U ansible ansible-lint
-  - wget -qO- "https://storage.googleapis.com/kubernetes-helm/helm-${HELM_VERSION}-linux-amd64.tar.gz" |
+  - wget -qO- "https://get.helm.sh/helm-${HELM_VERSION}-linux-amd64.tar.gz" |
     tar xvz --strip-components=1 -C $BINDIR
     && chmod +x $BINDIR/helm
     && helm version --client
