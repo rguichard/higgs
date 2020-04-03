@@ -1,0 +1,28 @@
+---
+- hosts: all
+  vars:
+    cri_socket: /run/containerd/containerd.sock
+  tasks:
+    - name: Reset | Run Kubeadm reset on node
+      shell: |
+        {{ bin_dir }}/kubeadm reset -f --cri-socket "{{ cri_socket }}"
+    - name: Reset | Cleanup /root
+      file:
+        path: "/root/{{ item }}"
+        state: absent
+      with_items:
+        - kubeadm-config.yaml
+        - rbac-kdd.yaml
+        - calico.yaml
+    - name: Reset | CNI config
+      file:
+        path: "/etc/cni/net.d"
+        state: absent
+    - name: Reset | CNI config
+      file:
+        path: "/etc/cni/net.d"
+        state: directory
+    - name: Reset | Cleanup leftover pods
+      shell: |
+        {{ bin_dir }}/crictl --runtime-endpoint {{ cri_socket }} pods -q | xargs {{ bin_dir }}/crictl --runtime-endpoint {{ cri_socket }} stopp
+        {{ bin_dir }}/crictl --runtime-endpoint {{ cri_socket }} pods -q | xargs {{ bin_dir }}/crictl --runtime-endpoint {{ cri_socket }} rmp
