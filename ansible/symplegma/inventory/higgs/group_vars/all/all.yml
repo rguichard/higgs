@@ -1,4 +1,7 @@
 ---
+bootstrap_python: false
+ansible_ssh_user: ubuntu
+ansible_ssh_common_args: '-o StrictHostKeyChecking=no'
 # ansible_ssh_user: core
 # ansible_python_interpreter: /opt/bin/python
 # ansible_ssh_common_args: '-o StrictHostKeyChecking=no -o ProxyCommand="ssh -o StrictHostKeyChecking=no -W %h:%p -q ubuntu@{{ ansible_ssh_bastion_host }}"'

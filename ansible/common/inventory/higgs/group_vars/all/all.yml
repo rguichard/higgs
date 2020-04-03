@@ -3,8 +3,7 @@ groups_user:
 
 users:
   box:
-    groups:
-      - box
+    groups: []
     authorized_key: ""
   klefevre:
     groups:
