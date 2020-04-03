@@ -1,4 +1,1 @@
-higgs ansible_connection=local
-
-[master]
-higgs
+higgs.particule.io
