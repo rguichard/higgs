@@ -32,5 +32,5 @@ install:
   -o $BINDIR/kubectl && chmod +x $BINDIR/kubectl && kubectl version --client
 script:
 - ansible-lint ansible/common/roles/*
-- ansible-playbook -b -i ansible/common/inventory/higgs/hosts ansible/common/init.yml
-- ansible-playbook -b -i ansible/symplegma/inventory/higgs/hosts ansible/symplegma/symplegma-init.yml
+- pushd ansible/common && ansible-playbook -b -i inventory/higgs/hosts init.yml && popd
+- pushd ansible/symplegma && ansible-galaxy install -r requirements-master.yml && ansible-playbook -b -i inventory/higgs/hosts ansible/symplegma/symplegma-init.yml && popd
