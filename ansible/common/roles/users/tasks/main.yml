@@ -1,0 +1,28 @@
+- name: Groups | Ensure groups
+  group:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ groups }}"
+
+- name: Users | Allow 'sudo' group to have sudo
+  lineinfile:
+    dest: /etc/sudoers
+    state: present
+    regexp: '^%sudo'
+    line: '%sudo ALL=(ALL) ALL'
+    validate: 'visudo -cf %s'
+
+- name: Users | Ensure users
+  user:
+    name: "{{ item.key }}"
+    groups: "{{ item.value.groups }}"
+    append: yes
+    state: present 
+    createhome: yes
+  with_dict: "{{ users }}"
+
+- name: Users | Ensure authorized keys
+  authorized_key:
+    user: "{{ item.key }}"
+    key: "{{ item.value.authorized_key }}"
+  with_dict: "{{ users }}"

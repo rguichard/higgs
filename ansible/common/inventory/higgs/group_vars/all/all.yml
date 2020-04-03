@@ -1,0 +1,19 @@
+groups:
+  - sudo
+  - box
+
+users:
+  klefevre:
+    groups:
+      - sudo
+      - box
+    authorized_key: ""
+  rguichard:
+    groups:
+      - sudo
+      - box
+    authorized_key: ""
+  mhenry:
+    groups:
+      - box
+    authorized_key: ""
