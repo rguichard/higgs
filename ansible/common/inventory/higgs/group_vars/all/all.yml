@@ -1,4 +1,4 @@
-groups:
+groups_user:
   - sudo
   - box
 

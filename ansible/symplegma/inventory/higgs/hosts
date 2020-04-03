@@ -1,4 +1,4 @@
-ocelot ansible_connection=local
+higgs ansible_connection=local
 
 [master]
 higgs
