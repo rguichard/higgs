@@ -1,0 +1,8 @@
+- name: System | Install NTP
+  package:
+    name: ntp
+    state: present
+
+- name: System | Set the timezone
+  timezone:
+    name: "Europe/Paris"

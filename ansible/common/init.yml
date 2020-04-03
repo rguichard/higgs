@@ -2,3 +2,6 @@
 - hosts: all
   roles:
     - users
+    - system
+  tags:
+    - common
