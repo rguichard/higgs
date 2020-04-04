@@ -1,13 +1,18 @@
 ---
 - hosts: all
   roles:
-    - users
     - system
   tags:
-    - common
+    - system
 
 - hosts: all
   roles:
     - lvm
   tags:
     - lvm
+
+- hosts: all
+  roles:
+    - users
+  tags:
+    - users
