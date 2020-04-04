@@ -2,8 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-    flux.weave.works/automated: "true"
-    flux.weave.works/tag.plex: regexp:^latest$
+    flux.weave.works/automated: "false"
   labels:
     app: plex
   name: plex
@@ -39,7 +38,7 @@ spec:
           value: "1004"
         - name: TZ
           value: Europe/Paris
-        image: linuxserver/plex:latest
+        image: linuxserver/plex:1.18.9.2578-513b381af-ls87
         imagePullPolicy: Always
         name: plex
         ports:
