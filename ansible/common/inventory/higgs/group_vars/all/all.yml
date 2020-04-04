@@ -9,16 +9,19 @@ users:
     groups:
       - sudo
       - seed
-    authorized_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDNBisS8Dswx8p8awTn0fkz+bAGLLl7eajy6/8nmbtRYkY/b0jajEbuEbsZl/ZVyHIsBuHQCidd64NKsi6frfL05dJbL+uLbWW6JTaZxF0YAPzWsFX5C3IssX4KS7vjC6jrokyRkEPakffRdIRvM+Tf3aY80qBOvMs8QgjLwvZYWTwFmbovsfRZfonF932qggaxjLqFVoW4XaEiilucNH3ttkejAd5xtjqyrPFOtBQITGDaF67M9Rl/12qFJR6eukplU4DgiUanXPiuKpKHc1AY6rBamg+9HHHfb4grghGuBvEjZ0I9eR5zhOnE/AB/vL4LK+ZEgaAQ1VYa7631TC87 klefevre@ocelot"
+    authorized_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDNBisS8Dswx8p8awTn0fkz+bAGLLl7eajy6/8nmbtRYkY/b0jajEbuEbsZl/ZVyHIsBuHQCidd64NKsi6frfL05dJbL+uLbWW6JTaZxF0YAPzWsFX5C3IssX4KS7vjC6jrokyRkEPakffRdIRvM+Tf3aY80qBOvMs8QgjLwvZYWTwFmbovsfRZfonF932qggaxjLqFVoW4XaEiilucNH3ttkejAd5xtjqyrPFOtBQITGDaF67M9Rl/12qFJR6eukplU4DgiUanXPiuKpKHc1AY6rBamg+9HHHfb4grghGuBvEjZ0I9eR5zhOnE/AB/vL4LK+ZEgaAQ1VYa7631TC87 klefevre@ocelot\nssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDZafOrwfF6MEWf9JKo6FwjqaSEVK2mY/c+BWhOVGJMtRRVt36Fx94MwyRu68fWnEyUvX4prpMwzLkhfCTUGck+9fej1JO+lM96Nj8CCxbpXVOyPVXRfXcE2uaT7I52aCJ9slwrZhyoipvnrP4XoVbWjnRCsThxrC3Jd3M8j3hYsaP2TGRQxVo4usV8fojiSueTlK510RaMvSVw2yjRcOmuXO5eGP8DSgfy6H+s+puX+42bOKHfdjYOO28JOZok3jA81bs9CCHwFoD9xjOnE7HZsbuKzZyoRhLBR6hVSFS9MKS7adrdtYOuChqg8waIYfUb+7KJnebqoW71hLpGbNBx klefevre@sorrow"
+    shell: /bin/zsh
   rguichard:
     groups:
       - sudo
       - seed
     authorized_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCcS5uO7nfQZtF0kTjKzgPNFmf7iqQdKRLU0dJPSwrTlB96pl4cOkBx6FUbWJNtNhAVPKY7GaKZ630E4RQvYcVx3xD104RTyH/eXOKSOluvNuqs7jXztrKJmt9ZUW1OllIKRAhpVNGzUm1baza/I260LENhZdTmfqZT9FoqFmIyhpbnPpvQCd/a29KlNLuZHsHifL5Ognv3Z8YeKqVUKmTNJ1su7T8Qbcapz2tLS29BBQxQIiw/gtUFyTcDz0p/doem0U7KAtWl5wxJltbgr6dh5RruoWPOai6VczOPqckPdz2FgGKoIaiNgByN/J816cBvrB5g3It1CD+kEw+78qswcf2MVXT33+FLcZL0DDf0/3a9MiTdvM7Gi6TLXPE0dZs+jCsqK+bO9Dl1+TpVPg7wT5mTI/XGIoXcmlxgmURPTaXg4bfEsu4EeqSylxN8S9Dwb4h+EmGhVklH3gw0Gf77FGXbvx7ntrGRsvkNzi9S2bYU1ZGhX3eiyN5nXZWGHfjLHnY7uiLi5lTtrKAPmNcTspJ7+5NI78gESuy2Q+vrBhGwAM2IrOC7qNAea/jl8dStRif9w6DafwirM5Szd4HftmVYSNbonsfDd/sPDqJALabsR/eVpOCLsZSFQTJvOPrT1piJdJ6bRkaKXss8giJ9or1ldTWLSfBsBgPOMtDIew== rguichard@rguichard-particule \n ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCsBCbHbBghG1nZu6wmX8k0t7pJ00jKz/mCubJZMSrtlG3cEAQfBkPRnm9hef28rSHJ/yOy3KtSggoheiAPOXoI4HSyUspJTOyU2AINgze5b/F0yuLUj+IUFdfmlQ+oYtcy9uQQUjl9zZgsa69KO6F7/CiWLZo82W3xzCPwjVRv3OEGcYnHXh3v7Tv+aGwvoDStyFUaLGxybpm/4IWFX0Y9Rrv8sqEN/HplBaF09bt6b17lWd2cXnUY4QFJ9mOxphRtOJJYs9UGBk/nXURqwPkHDJJS8bN75qcDroImcCKMEhDrJi2HL9lQVuNDodjYDTLs+3X0WKRiOiP2Cpv0hZpP rguichard@op5t \n ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDT+ed6yIGnBT/2eLepIsmCOc71qUDC4xP/Bpoh8qgska+2vR/Qo6V9QCU9WvXSQdJNAhWpGKHglbLa5QsMGkJ93ri1JqwrPmNwfktK/tMovglNPcd7ZUGDeuzBiK0fNSceN5EVDUovxTKa6YazSbv0KjufIhwK+jLRwiMamzaDgnFbFv2tdVNTzK3/QDUMvnlEXhmKoRZ8NF7Zw2wlBmzwMthLMappfSFbpGNIjpdprD3rmitbu0K0kfKcdQXTuQ5W+gc1K4c0xy+cPVVoQbS1I+y/CLJhM947D24owODPmArIbJRapfIPumOryFMGsLkT4R+4Bt5h9JkiNuG9LrDuhM0NhbDiYm1ydP1BvlDMNBjnV0cWnCA+BfqgnP6CeNDgRlOpjIOIACL32/ZCnCwpGguoyrcz7XF6eJ4TapGdxWkqoqcNn2r/E5DJohscjoxCQMLdW4vUvmlwBWpy+/OOfe85ZQEG5/Q6EKD00puKcijvmAHQBsSCXK3dRGTmq3079aofo030KInu9Dx7id0OhYvqeI8HcLNjwot4811xOiyypAqnqrM1bxuhKFg3jm7Msg2yR4rhBISk46ym/SYHkcFEvSlgL2VMWVszvq0y5mrqTukAsS4uFL8VCkCeD+zrKJ2HeXrjfI1HRJe9VTIAnoH1f2jXmXeWY5oyAEazbQ== rguichard@rexaura"
+    shell: /bin/bash
   mhenry:
     groups:
       - seed
-    authorized_key: ""
+    authorized_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDLiaNw+o00Y1YP5bDP6OQr/DDgFIQd9wrX97MaBpfXtBXJfLoSBMjF+NjB3xWkm5ntDMT1XnUGD7ilRyQ03YNg7uUFrtDq3WKbmjBu+TltwDYdIfROzQFBSihWoraPKMQ536R41mT403h7XUVAabUhK+qcNSdafcJtLwM226QrO1c0klhVD+kMQc4IGRshE5C4eQDSLDcOe52zlsJnAYyl5noaLxCFoBCd6GlTAnTjawFuK8KCOn2P6DSq/z5GsmatM02aLGoXIH0667pkTWrYK9I/Prnqj6GlxksDCMbcSDgU9RZ/OA9mmTBDh05fJFKXI4fpJEnZYPFKJd2TBvzMlWmNDOGXhjmP0/k4kKO4o/K/i2WEmMec9Rf0mq+oCY4/5W29ryeUHJg6Hb6sh5fm34tpM+XN+Bvqdlvt9CvYIxG0jx1Z6Qq1FSYGZ38dIffGenjx890j2OpGhgU+fBrbu9mvOztZ0i57oP44tHCs9yYzn25gy6OWpJne9773n/snBZktZUlegO1u74+jVgp9QzzMJFr76W3/hkABz03lOOTI5pgdFHp5QkzfavFi83GT51MEt5y6wsbzbeBXJjDFZjPUDUVVV3B3a6SOKiuXrKCA4Zx/4TMUsHD7V6uXQMakNt3r+5yfVQ6w2xY2L7hjY5B5agRSqu9uD2sZa7R2CQ== plex"
+    shell: /bin/bash
 
 vg_conf:
   seed:
@@ -33,3 +36,18 @@ lv_conf:
     path: "/srv"
     fstype: "ext4"
 
+packages:
+  - vim
+  - byobu
+  - rsync
+  - zsh
+  - git
+
+seed_dirs:
+  - /srv/seed/configs
+  - /srv/seed/incomings/tv
+  - /srv/seed/incomings/movies
+  - /srv/seed/completed/tv
+  - /srv/seed/completed/movies
+  - /srv/seed/postprocessed/tv
+  - /srv/seed/postprocessed/movies

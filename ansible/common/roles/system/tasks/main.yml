@@ -1,3 +1,17 @@
+- name: System | Packages
+  package:
+    name: {{ item }}
+    state: present
+  with_items: {{ packages }}
+
 - name: System | Set the timezone
   timezone:
     name: "Europe/Paris"
+
+- name: System | Ensure seed directories
+  file:
+    path: {{ item }}
+    state: directory
+    mode: 775
+    owner: seed
+  with_items: {{ seed_dirs }}
