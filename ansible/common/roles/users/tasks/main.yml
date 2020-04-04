@@ -19,6 +19,7 @@
     append: yes
     state: present
     createhome: yes
+    shell: "{{ item.value.shell }}"
   with_dict: "{{ users }}"
 
 - name: Users | Ensure authorized keys
