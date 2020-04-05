@@ -1,8 +1,8 @@
 - name: System | Packages
   package:
-    name: {{ item }}
+    name: "{{ item }}"
     state: present
-  with_items: {{ packages }}
+  with_items: "{{ packages }}"
 
 - name: System | Set the timezone
   timezone:
@@ -10,8 +10,9 @@
 
 - name: System | Ensure seed directories
   file:
-    path: {{ item }}
+    path: "{{ item }}"
     state: directory
-    mode: 775
+    mode: 0775
     owner: seed
-  with_items: {{ seed_dirs }}
+    group: seed
+  with_items: "{{ seed_dirs }}"

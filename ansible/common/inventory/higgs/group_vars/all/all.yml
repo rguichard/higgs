@@ -5,6 +5,7 @@ users:
   seed:
     groups: []
     authorized_key: ""
+    shell: /bin/bash
   klefevre:
     groups:
       - sudo
@@ -44,9 +45,13 @@ packages:
   - git
 
 seed_dirs:
+  - /srv/seed
+  - /srv/seed/incoming
+  - /srv/seed/completed
+  - /srv/seed/postprocessed
   - /srv/seed/configs
-  - /srv/seed/incomings/tv
-  - /srv/seed/incomings/movies
+  - /srv/seed/incoming/tv
+  - /srv/seed/incoming/movies
   - /srv/seed/completed/tv
   - /srv/seed/completed/movies
   - /srv/seed/postprocessed/tv
