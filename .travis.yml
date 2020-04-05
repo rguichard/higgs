@@ -1,48 +1,18 @@
-dist: xenial
-language: python
-python:
-- '3.7'
-cache: pip
 branches:
   only:
   - master
-addons:
-  ssh_known_hosts: higgs.particule.io
-env:
-  global:
-  - BINDIR="$TRAVIS_BUILD_DIR/bin"
-  - HELM_VERSION="v3.1.2"
-  - KUBECTL_VERSION="v1.18.0"
-  - FLUXCD_REPO="https://charts.fluxcd.io"
-  - PATH="$PATH:$BINDIR"
-  - KUBECONFIG="$TRAVIS_BUILD_DIR/ansible/symplegma/kubeconfig/higgs/admin.conf"
+services:
+  - docker
 before_install:
-- openssl aes-256-cbc -K $encrypted_db2095f63ba3_key -iv $encrypted_db2095f63ba3_iv
-  -in deploy_rsa.enc -out deploy_rsa -d
-- eval "$(ssh-agent -s)"
-- chmod 600 deploy_rsa
-- ssh-add deploy_rsa
-install:
-- mkdir $BINDIR
-- pip install -U ansible ansible-lint
-- wget -qO- "https://get.helm.sh/helm-${HELM_VERSION}-linux-amd64.tar.gz" | tar xvz
-  --strip-components=1 -C $BINDIR && chmod +x $BINDIR/helm && helm version --client
-- helm repo add fluxcd $FLUXCD_REPO
-- curl -L https://storage.googleapis.com/kubernetes-release/release/${KUBECTL_VERSION}/bin/linux/amd64/kubectl
-  -o $BINDIR/kubectl && chmod +x $BINDIR/kubectl && kubectl version --client
+  - wget https://storage.googleapis.com/kubernetes-release/release/v1.17.0/bin/linux/amd64/kubectl
+  - wget https://github.com/rancher/k3d/releases/download/v1.7.0/k3d-linux-amd64
+  - chmod +x k3d-linux-amd64 kubectl
+  - sudo mv k3d-linux-amd64 /usr/local/bin/k3d
+  - sudo mv kubectl /usr/local/bin
+  - k3d --version
 script:
-- ansible-lint ansible/common/roles/*
-- pushd ansible/common && ansible-playbook -b -i inventory/higgs/hosts init.yml &&
-  popd
-- pushd ansible/symplegma && ansible-galaxy install -r requirements.yml &&
-  ansible-playbook -b -i inventory/higgs/hosts symplegma-init.yml && popd
-- kubectl get nodes
-- kubectl create ns flux --dry-run=client -o yaml | kubectl apply -f -
-- kubectl apply -f https://raw.githubusercontent.com/fluxcd/helm-operator/master/deploy/crds.yaml
-- helm upgrade -i flux fluxcd/flux --namespace flux -f flux/values-flux.yaml
-- helm upgrade -i helm-operator fluxcd/helm-operator --namespace flux -f flux/values-helm-operator.yaml
-notifications:
-  slack:
-    rooms:
-    - secure: nn25F7g68MAY0klDHvxc7JUR5YWrIo7EjuDM1fv0l6GhMya27TtPzbFautYP3vTJ/qg6M0N2yo6Ua3v3Z8sCM2Z+nGehRxtIt+a7DP/x941g4QDB5iNYHU8XdCUTn04uRsRfWgMCJCRxewUtmPDcOPj+7f9wn1fJlPRaf/d02Z2cPOEnuWxYNd1eOp7HZmaPH7hz8c0CK3L+Cme8LNsvv/XUozQol/PV3D4KoDrNCKMre0OVuZl9tXrzIVuoA4iWtazO87WikxWedtgwIsJsmSe/X50ZM44dL+OfRuX7MoIWnL8W3NCFXvvVylx3D9t0uD99+25ZsPBZYcwr8Di+fGShBx6SRXzQ5Ug98OxtS4QJ5k1ofUAamww2PI8IuYrzFYwXKkHMMoOvzH/8lUaG/7i+A2GsevlxBn+3eQgMjOnzlxXdioQL3DQixsStU+/lLB6VHgRhwtwvDswXN5ksLfiCphh+k3vuvOspW85Z9QmvW3EluNirRoK1XD0KD7qvAEHOvyvqC3Jgl0NeLH/qXG9Od2y7JeciU/saS9sBMTke2nzRpm1luvV1lS0TufsreuS+vkPmW4gLySk3NXRbiELUicUJijBxRwq61qo3OpsOg81hQBZhPRbPqEZoY5viFIRqm4KC7422U12Oupy2eEngpcFiE6GlPOF0/6LNaQc=
-    - secure: SR5LSvpUAfCjKRCZvdyvBMpMuusDqotzsgaAkd8iFQkKIoAyBq9VTbaBst94DQCN00ywau/wrxMWSyC7sn1a4iMJSvWAryFyxFD6NK2WFwW1uYA0neDjAlaMX8Co3njCqCOkXbVvSWzw4VNZ7KXTOHTpjCSYOJWCxo4oAGLZrOWaxWE/TCMyxi+Wllbx0grmbbUgch5trlinvkNAo8Ca2q7ypfwSeK44X+AiJ2jOms1djzpy+hEmud8ycljftTnjlfRuoT1aBxPTxK1zHQ8kjALvDPYSps/kIfEXSnXIlt0lUHVyPlaRAyW/9h3c7XarPaOjkftAeMgjdsXNoopSXuIurgje0fOH8VMzNW9x3BSWaPiBi6j5J4tCcT+kXRr/j8wpqzxxp4xA0XvzXndU10ClsT/384+h6vaA2qnB2SzTsd1iPinGFNg1IiwgkYyKfNAyqnvm0R9FiVHaXToxGSEqrInvJPojWADbE0+fxtXBNIA9IoK0vYrOMme53+odGnIE+0uXnWz9kE9Pc9RGPsTcP0rsx8ndG7D0Rhwhq7Hk4sEUdNhXmvdQwLNbT53+G/V5gZi3yaCF79x1n+hoAppFeY7mcFe5yb24B57fTN3CcUFY70FM2eEFBA6hYKLc1c7p4gNOakKd5TsrcLrdZUieggHBgUf2jmv2pRYkXBA=
+  - k3d create
+  - sleep 15
+  - export KUBECONFIG="$(k3d get-kubeconfig --name='k3s-default')"
+  - kubectl get node
+  - kubectl apply -f flux/resources/
