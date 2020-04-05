@@ -15,4 +15,5 @@ script:
   - sleep 15
   - export KUBECONFIG="$(k3d get-kubeconfig --name='k3s-default')"
   - kubectl get node
-  - kubectl apply -f flux/resources/
+  - sleep 15
+  - find flux/resources/ -name "*.yaml" -exec kubectl apply -f {} \;
