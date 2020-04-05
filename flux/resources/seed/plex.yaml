@@ -1,0 +1,72 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    flux.weave.works/automated: "false"
+  labels:
+    app: plex
+  name: plex
+  namespace: seed
+spec:
+  replicas: 1
+  revisionHistoryLimit: 1
+  selector:
+    matchLabels:
+      app: plex
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: plex
+    spec:
+      initContainers:
+      - name: init-plex
+        image: alpine:3.8
+        command: ['sh', '-c', 'rm -rf /config/Library/Application Support/Plex Media
+            Server/plexmediaserver.pid']
+        volumeMounts:
+        - mountPath: /config
+          name: plex-config
+      containers:
+      - env:
+        - name: VERSION
+          value: latest
+        - name: PGID
+          value: "1004"
+        - name: PUID
+          value: "1004"
+        - name: TZ
+          value: Europe/Paris
+        image: linuxserver/plex:1.18.9.2578-513b381af-ls87
+        imagePullPolicy: Always
+        name: plex
+        ports:
+        - containerPort: 32400
+          protocol: TCP
+        - containerPort: 32400
+          protocol: UDP
+        resources:
+          requests:
+            cpu: "4"
+            memory: 8Gi
+        volumeMounts:
+        - mountPath: /config
+          name: plex-config
+        - mountPath: /library
+          name: plex-library
+        - mountPath: /tmp
+          name: tmp
+      securityContext:
+        fsGroup: 1004
+      hostNetwork: true
+      volumes:
+      - hostPath:
+          path: /srv/seed/configs/plex
+        name: plex-config
+      - hostPath:
+          path: /srv/seed
+        name: plex-library
+      - hostPath:
+          path: /tmp
+        name: tmp
